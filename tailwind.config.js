@@ -23,8 +23,8 @@ module.exports = {
             colors: {
                 primary: "#F4F6F8",
                 secondary: "#333333",
-                accent3: "#3772FF",
-                accent2: "#FF8800",
+                accent3: "#e53f71",
+                accent2: "#F89f5b",
                 accent1: "#551283",
             },
         },
