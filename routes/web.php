@@ -18,8 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::get('/register', function () {
+//     return view('auth.register');
+// })->name('register');
+
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name('login');
+
 // ? Route server side
-Route::middleware(['auth', 'verified'])->group(function() {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => view('server-side.dashboard'))->name('dashboard');
     Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
     Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
@@ -30,4 +39,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
