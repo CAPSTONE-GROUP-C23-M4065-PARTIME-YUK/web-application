@@ -56,8 +56,9 @@ class EmployersController extends Controller
      * @param  \App\Models\Employers  $employers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employers $employers)
+    public function edit($employers)
     {
+        $employers = Employers::find($employers);
         return view('admin.employer.edit');
     }
 
@@ -79,8 +80,9 @@ class EmployersController extends Controller
      * @param  \App\Models\Employers  $employers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employers $employers)
+    public function destroy($employers)
     {
+        $employers = Employers::find($employers);
         dd($employers);
     }
 }

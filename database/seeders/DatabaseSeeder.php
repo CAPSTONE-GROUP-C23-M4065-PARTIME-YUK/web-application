@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UsersSeeder::class,
+            JobSeekerSeeder::class,
+            EmployersSeeder::class,
+            JobSeeder::class
         ]);
     }
 }

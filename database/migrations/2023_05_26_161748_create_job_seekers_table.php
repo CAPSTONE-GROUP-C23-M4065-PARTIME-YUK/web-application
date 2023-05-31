@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_id')->constrained('users');
             $table->string('phone_number');
             $table->string('address');
-            $table->string('resume');
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

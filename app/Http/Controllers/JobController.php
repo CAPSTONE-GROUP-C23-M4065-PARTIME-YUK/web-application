@@ -58,7 +58,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        dd($job);
     }
 
     /**

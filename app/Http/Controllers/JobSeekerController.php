@@ -57,8 +57,10 @@ class JobSeekerController extends Controller
      * @param  \App\Models\jobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function edit(jobSeeker $jobSeeker)
+    public function edit($jobSeeker)
     {
+        $jobSeeker = jobSeeker::find($jobSeeker);
+        dd($jobSeeker);
         return view('admin.jobseeker.edit');
     }
 
@@ -80,8 +82,9 @@ class JobSeekerController extends Controller
      * @param  \App\Models\jobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(jobSeeker $jobSeeker)
+    public function destroy($jobSeeker)
     {
+        $jobSeeker = jobSeeker::find($jobSeeker);
         dd($jobSeeker);
     }
 }

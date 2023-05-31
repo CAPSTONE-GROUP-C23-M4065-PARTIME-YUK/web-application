@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id')->constrained('users');
             $table->string('company_name');
-            $table->string('company_logo');
+            $table->string('company_logo')->nullable();
             $table->string('company_website');
             $table->string('company_email');
             $table->timestamps();
