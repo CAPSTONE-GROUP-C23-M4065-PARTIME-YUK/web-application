@@ -25,7 +25,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.job.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        dd(request());
     }
 
     /**
@@ -58,7 +58,8 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        dd($job);
+        // dd($job);
+        return view('admin.job.edit');
     }
 
     /**

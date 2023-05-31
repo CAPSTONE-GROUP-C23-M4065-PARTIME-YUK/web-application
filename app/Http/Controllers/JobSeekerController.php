@@ -60,7 +60,7 @@ class JobSeekerController extends Controller
     public function edit($jobSeeker)
     {
         $jobSeeker = jobSeeker::find($jobSeeker);
-        dd($jobSeeker);
+        // dd($jobSeeker);
         return view('admin.jobseeker.edit');
     }
 

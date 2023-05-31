@@ -53,10 +53,10 @@
                             <td class="px-6 py-4 text-right">
                                 <div class="inline-flex overflow-hidden rounded-md text-slate-800 shadow-sm">
                                     <a class="rounded-l-lg bg-accent4 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-                                       href="{{ route('employer.edit', ['employer' => 3]) }}">
+                                       href="{{ route('employer.edit', ['employer' => 1]) }}">
                                         Edit
                                     </a>
-                                    <form action="{{ route('employer.destroy', ['employer' => 3]) }}" method="post">
+                                    <form action="{{ route('employer.destroy', ['employer' => 1]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="rounded-r-md bg-accent3 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"

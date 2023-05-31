@@ -4,7 +4,10 @@
 
     <div class="flex min-h-screen flex-col items-center justify-center gap-8 p-4 py-16 sm:ml-64 md:flex-row">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="bg-white p-4 pb-4 dark:bg-gray-900">
+
+            <div class="flex justify-between bg-white p-4 pb-4 dark:bg-gray-900">
+                <a href="{{ route('job.create') }}" class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button">Buat Lowongan</a>
                 <label class="sr-only" for="table-search">Search</label>
                 <div class="relative mt-1">
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -18,6 +21,7 @@
                     <input class="block w-80 rounded-md border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                            id="table-search" type="text" placeholder="Cari Lowongan">
                 </div>
+
             </div>
             <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
                 <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
