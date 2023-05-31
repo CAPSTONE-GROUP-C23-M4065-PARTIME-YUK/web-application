@@ -2,10 +2,10 @@
     <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a class="flex items-center transition-all hover:translate-x-1" href="/">
             <img class="mr-3 h-8" src="{{ asset('images/emblem.png') }}" alt="Logo">
-            <span class="self-center whitespace-nowrap text-2xl font-semibold hidden sm:inline-block">PartTime.yuk</span>
+            <span class="hidden self-center whitespace-nowrap text-2xl font-semibold sm:inline-block">PartTime.yuk</span>
         </a>
-        <div class="flex md:order-2 gap-y-4">
-            <div class="flex  gap-x-2 md:order-2">
+        <div class="flex gap-y-4 md:order-2">
+            <div class="flex gap-x-2 md:order-2">
                 @if (!auth()->user())
                     <a class="mr-3 rounded-lg bg-accent1 px-4 py-2 text-center text-sm font-medium text-white transition-all hover:translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0"
                        type="button" href="{{ route('login') }}">Login</a>
@@ -40,16 +40,21 @@
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
-                       href="#">About</a>
+                       href="#">Jobs</a>
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
-                       href="#">Services</a>
+                       href="#">Faq</a>
                 </li>
-                <li>
-                    <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
-                       href="#">Contact</a>
-                </li>
+                @if (auth()->user())
+                    @if (auth()->user()->role == 'administrator')
+                        <li>
+                            <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
+                               href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
+                @endif
+
             </ul>
         </div>
 

@@ -10,7 +10,7 @@ module.exports = {
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
     ],
-
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -26,6 +26,8 @@ module.exports = {
                 accent3: "#e53f71",
                 accent2: "#F89f5b",
                 accent1: "#551283",
+                accent4: "#62CDFF",
+                accent5: "#BEF0CB",
             },
         },
     },

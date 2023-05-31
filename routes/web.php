@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployersController;
+use App\Http\Controllers\JobSeekerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => view('server-side.dashboard'))->name('dashboard');
     Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
     Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
+    // Route::get('/jobseekers/index', [JobSeekerController::class, 'index'])->name('jobseeker.index');
+    // Route::get('/jobseekers/edit/{id}', [JobSeekerController::class, 'edit'])->name('jobseeker.edit');
+    Route::resource('/jobseeker', JobSeekerController::class);
+    Route::resource('/employer', EmployersController::class);
+    Route::resource('/job', JobC::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

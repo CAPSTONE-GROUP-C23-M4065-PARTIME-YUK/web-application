@@ -15,7 +15,7 @@ class EmployersController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.employer.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class EmployersController extends Controller
      */
     public function edit(Employers $employers)
     {
-        //
+        return view('admin.employer.edit');
     }
 
     /**
@@ -81,6 +81,6 @@ class EmployersController extends Controller
      */
     public function destroy(Employers $employers)
     {
-        //
+        dd($employers);
     }
 }

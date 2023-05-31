@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\jobSeeker;
 use App\Http\Requests\StorejobSeekerRequest;
 use App\Http\Requests\UpdatejobSeekerRequest;
+use Illuminate\Http\Request;
 
 class JobSeekerController extends Controller
 {
@@ -15,7 +16,7 @@ class JobSeekerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.jobseeker.index');
     }
 
     /**
@@ -58,7 +59,7 @@ class JobSeekerController extends Controller
      */
     public function edit(jobSeeker $jobSeeker)
     {
-        //
+        return view('admin.jobseeker.edit');
     }
 
     /**
@@ -68,9 +69,9 @@ class JobSeekerController extends Controller
      * @param  \App\Models\jobSeeker  $jobSeeker
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatejobSeekerRequest $request, jobSeeker $jobSeeker)
+    public function update(Request $request, jobSeeker $jobSeeker)
     {
-        //
+        dd($request, $jobSeeker);
     }
 
     /**
@@ -81,6 +82,6 @@ class JobSeekerController extends Controller
      */
     public function destroy(jobSeeker $jobSeeker)
     {
-        //
+        dd($jobSeeker);
     }
 }
