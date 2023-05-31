@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 // ? Route server side
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn () => view('server-side.dashboard'))->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
     Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
     // Route::get('/jobseekers/index', [JobSeekerController::class, 'index'])->name('jobseeker.index');
