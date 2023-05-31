@@ -58,7 +58,7 @@
                             <strong class="text-gray-600">{{ $totalJobSeekers }}</strong>
                         </p>
                         <p class="text-right font-bold text-green-700">
-                            <a href="{{ route('jobseeker.index') }}">Lihat data</a>
+                            <a href="{{ route('job.index') }}">Lihat data</a>
                         </p>
                     </div>
                 </div>

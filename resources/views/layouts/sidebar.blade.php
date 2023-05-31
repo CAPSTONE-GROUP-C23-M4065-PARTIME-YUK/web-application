@@ -65,7 +65,7 @@
             </li>
             <li>
                 <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                   href="#">
+                   href="{{ route('job.index') }}">
                     <svg class="icon icon-tabler icon-tabler-file-description" xmlns="http://www.w3.org/2000/svg"
                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                          fill="none" stroke-linecap="round" stroke-linejoin="round">

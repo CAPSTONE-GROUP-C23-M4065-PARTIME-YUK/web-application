@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/jobseekers/edit/{id}', [JobSeekerController::class, 'edit'])->name('jobseeker.edit');
     Route::resource('/jobseeker', JobSeekerController::class);
     Route::resource('/employer', EmployersController::class);
+    Route::resource('/job', JobController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
