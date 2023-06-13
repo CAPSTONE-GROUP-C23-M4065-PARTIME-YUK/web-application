@@ -22,7 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 // Route::get('/register', function () {
 //     return view('auth.register');
 // })->name('register');
@@ -33,14 +32,16 @@ Route::get('/', function () {
 
 // ? Route server side
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
-    Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
+    Route::middleware('admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('/jobseeker', JobSeekerController::class);
+        Route::resource('/employer', EmployersController::class);
+        Route::resource('/job', JobController::class)->scoped();
+    });
+    // Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
+    // Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
     // Route::get('/jobseekers/index', [JobSeekerController::class, 'index'])->name('jobseeker.index');
     // Route::get('/jobseekers/edit/{id}', [JobSeekerController::class, 'edit'])->name('jobseeker.edit');
-    Route::resource('/jobseeker', JobSeekerController::class);
-    Route::resource('/employer', EmployersController::class);
-    Route::resource('/job', JobController::class)->scoped();
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

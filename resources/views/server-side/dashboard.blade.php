@@ -55,7 +55,7 @@
                             </small></div>
                         <p class="text-[44px] text-green-700">
                             <span class="bi bi-person-check"></span>
-                            <strong class="text-gray-600">{{ $totalJobSeekers }}</strong>
+                            <strong class="text-gray-600">{{ $totalJobs }}</strong>
                         </p>
                         <p class="text-right font-bold text-green-700">
                             <a href="{{ route('job.index') }}">Lihat data</a>
