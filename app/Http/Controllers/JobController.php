@@ -15,7 +15,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('admin.job.index');
+        // return view('admin.job.index');
+        return view('employer.index');
     }
 
     /**
@@ -25,7 +26,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.job.create');
+        // return view('admin.job.create');
+        return view('employer.create-job');
     }
 
     /**
@@ -59,7 +61,8 @@ class JobController extends Controller
     public function edit(Job $job)
     {
         // dd($job);
-        return view('admin.job.edit');
+        // return view('admin.job.edit');
+        return view('employer.edit-job');
     }
 
     /**
@@ -83,5 +86,11 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         //
+    }
+
+
+    public function profile()
+    {
+        return view('employer.profile');
     }
 }

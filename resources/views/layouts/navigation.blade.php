@@ -36,7 +36,7 @@
                 class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-slate-100 md:p-0">
                 <li>
                     <a class="block rounded bg-accent1 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-accent1"
-                       href="#" aria-current="page">Home</a>
+                       href="{{ url('/') }}" aria-current="page">Home</a>
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
@@ -60,7 +60,10 @@
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                                     @if (auth()->user()->role == 'employer')
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Lowongan</a>
+                                            <a href="{{ route('job.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Data Lowongan</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('job.create') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Lowongan</a>
                                         </li>
                                     @elseif (auth()->user()->role == 'jobseeker')
                                         <li>
@@ -72,7 +75,7 @@
                                     @endif
                                 </ul><hr>
                                 <div class="py-1">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile</a>
+                                    <a href="{{ auth()->user()->role == 'employer' ? route('profile.employer') : route('profile.jobseeker') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile</a>
                                 </div>
                             </div>
                         </li>
