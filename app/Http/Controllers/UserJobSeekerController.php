@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
+
 class UserJobSeekerController extends Controller
 {
     /**
@@ -101,4 +102,43 @@ class UserJobSeekerController extends Controller
         
         return view('user.jobseeker.profile', ['data' => $data]);
     }
+
+    public function resume()
+    {
+        $user = Auth::user();
+        $data = DB::table('users')
+            ->join('job_seekers', 'users.id', '=', 'job_seekers.user_id')
+            ->select('users.*', 'job_seekers.*')
+            ->where('users.id', '=', $user->id)
+            ->get();
+    
+        return view('user.jobseeker.resume', compact('data', 'user'));
+    }
+    
+    public function uploadResume(Request $request)
+    {
+        $data = Auth::user()->jobSeeker;
+        $data->address = $request->address;
+        $data->phone_number = $request->phone_number;
+
+        if ($request->hasFile('resume')) {
+            $resumeFile = $request->file('resume');
+            $resumeFileName = time() . '_' . $resumeFile->getClientOriginalName();
+            $resumePath = $request->file('resume')->storeAs('resumes', $resumeFileName, 'public');
+            $data->resume = $resumePath;
+        }
+    
+
+        $data->save();
+
+        return redirect()->route('profile.jobseeker')->with('success', 'Resume berhasil diupload');
+    }
+
+    public function downloadResume($id)
+    {
+        $data = JobSeeker::find($id);
+        $pathToFile = public_path('storage/' . $data->resume);
+        return response()->download($pathToFile);
+    }
+
 }

@@ -49,6 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile-jobseeker', [UserJobSeekerController::class, 'jobSeekerProfile'])->name('profile.jobseeker');
     Route::get('/profile-jobseeker/create', [UserJobSeekerController::class, 'create'])->name('profile.jobseeker.create');
     Route::post('/add', [UserJobSeekerController::class, 'store'])->name('profile.jobseeker.store');
+    Route::get('/resume', [UserJobSeekerController::class, 'resume'])->name('profile.jobseeker.resume');
+    Route::put('/edit', [UserJobSeekerController::class, 'uploadResume'])->name('upload.resume');
+    Route::get('/resume/download/{id}', [UserJobSeekerController::class, 'downloadResume'])->name('resume.download');
+
 
     // Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
     // Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');

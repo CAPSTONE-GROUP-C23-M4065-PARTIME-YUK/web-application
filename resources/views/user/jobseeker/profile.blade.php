@@ -9,6 +9,9 @@
 <input type="text" value="{{ auth()->user()->email }}" readonly>
 <input type="text" value="{{ auth()->user()->jobSeeker->phone_number }}" readonly>
 <input type="text" value="{{ auth()->user()->jobSeeker->address }}" readonly>
+@foreach($data as $jobSeeker)
+    <a href="{{ route('resume.download', $jobSeeker->id) }}">Unduh Resume</a>
+@endforeach
 @endif
 
 @endsection
