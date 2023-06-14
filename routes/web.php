@@ -34,8 +34,12 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('/jobseeker', JobSeekerController::class);
-        Route::resource('/employer', EmployersController::class);
+        Route::get('/list-user', [DashboardController::class, 'dataPengguna'])->name('list.user');
+        Route::get('/list-employers', [DashboardController::class, 'dataEmployers'])->name('list.employers');
+        Route::get('/list-jobseekers', [DashboardController::class, 'dataJobSeekers'])->name('list.jobseekers');
+        Route::get('/list-jobs', [DashboardController::class, 'dataJobs'])->name('list.jobs');
+        // Route::resource('/jobseeker', JobSeekerController::class);
+        // Route::resource('/employer', EmployersController::class);
         // Route::resource('/job', JobController::class)->scoped();
     });
     

@@ -16,7 +16,7 @@
                         </svg>
                     </div>
                     <input class="block w-80 rounded-md border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                           id="table-search" type="text" placeholder="Cari Jobseekers">
+                           id="table-search" type="text" placeholder="Cari Perusahaan">
                 </div>
             </div>
             <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
@@ -29,7 +29,7 @@
                             Email
                         </th>
                         <th class="px-6 py-3" scope="col">
-                            Phone
+                            Nama Perusahaan
                         </th>
                         <th class="px-6 py-3" scope="col">
                             <span class="sr-only">Action</span>
@@ -37,43 +37,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 1; $i < 20; $i++)
-                        <tr
-                            class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-                                scope="row">
-                                Jackson Martinez
-                            </th>
-                            <td class="px-6 py-4">
-                                jacksonm@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                08123456789
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <div class="inline-flex overflow-hidden rounded-md text-slate-800 shadow-sm">
-                                    <a class="rounded-l-lg bg-accent4 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-                                       href="{{ route('jobseeker.edit', ['jobseeker' => 1]) }}">
-                                        Edit
-                                    </a>
-                                    <form action="{{ route('jobseeker.destroy', ['jobseeker' => 1]) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="rounded-r-md bg-accent3 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-                                                type="submit" href="#">
-                                            Delete
-                                        </button>
-                                    </form>
+                   @foreach ($dataJobSeekers as $listJobSeekers)
+                    <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
+                        <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                            scope="row">
+                            Jackson Martinez
+                        </th>
+                        <td class="px-6 py-4">
+                            jacksonm@gmail.com
+                        </td>
+                        <td class="px-6 py-4">
+                            PT.Sentosa Jaya
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="inline-flex overflow-hidden rounded-md text-slate-800 shadow-sm">
+                                <a class="rounded-l-lg bg-accent4 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
+                                    href="">
+                                    Detail
+                                </a>
+                            </div>
 
-                                </div>
-
-                            </td>
-                        </tr>
-                    @endfor
-
+                        </td>
+                    </tr>
+                   @endforeach
                 </tbody>
             </table>
-            <nav class="flex items-center justify-between pt-4 p-4" aria-label="Table navigation">
+            <nav class="flex items-center justify-between p-4 pt-4" aria-label="Table navigation">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
                           class="font-semibold text-gray-900 dark:text-white">1-20</span> of <span
                           class="font-semibold text-gray-900 dark:text-white">1000</span></span>

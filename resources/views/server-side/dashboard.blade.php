@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main')
-    @include('layouts.sidebar')
+@include('layouts.sidebar')
     <div class="flex min-h-screen flex-col items-center justify-center gap-8 p-4 sm:ml-64 md:flex-row">
         <div class="py-12">
             <div class="gap mx-auto flex max-w-7xl flex-wrap justify-center gap-8 sm:px-6 lg:px-8">
@@ -15,7 +15,7 @@
                             <strong class="text-gray-600">{{ $totalPengguna }}</strong>
                         </p>
                         <p class="text-right font-bold text-indigo-700">
-                            <a href="/">Lihat data</a>
+                            <a href="{{ route('list.user') }}">Lihat data</a>
                         </p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                             <strong class="text-gray-600">{{ $totalEmployers }}</strong>
                         </p>
                         <p class="text-right font-bold text-red-700">
-                            <a href="{{ route('employer.index') }}">Lihat data</a>
+                            <a href="{{ route('list.employers') }}">Lihat data</a>
                         </p>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <strong class="text-gray-600">{{ $totalJobSeekers }}</strong>
                         </p>
                         <p class="text-right font-bold text-green-700">
-                            <a href="{{ route('jobseeker.index') }}">Lihat data</a>
+                            <a href="{{ route('list.jobseekers') }}">Lihat data</a>
                         </p>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <strong class="text-gray-600">{{ $totalJobs }}</strong>
                         </p>
                         <p class="text-right font-bold text-green-700">
-                            <a href="{{ route('job.index') }}">Lihat data</a>
+                            <a href="{{ route('list.jobs') }}">Lihat data</a>
                         </p>
                     </div>
                 </div>

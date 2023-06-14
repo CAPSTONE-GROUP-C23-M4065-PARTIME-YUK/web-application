@@ -33,7 +33,7 @@
             </li>
             <li>
                 <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                   href="{{ route('jobseeker.index') }}">
+                   href="{{ route('list.user') }}">
                     <svg class="icon icon-tabler icon-tabler-user" xmlns="http://www.w3.org/2000/svg" width="24"
                          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                          stroke-linecap="round" stroke-linejoin="round">
@@ -41,12 +41,12 @@
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                     </svg>
-                    <span class="ml-3 flex-1 whitespace-nowrap">Jobseekers</span>
+                    <span class="ml-3 flex-1 whitespace-nowrap">Pengguna</span>
                 </a>
             </li>
             <li>
                 <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                   href="{{ route('employer.index') }}">
+                   href="{{ route('list.employers') }}">
                     <svg class="icon icon-tabler icon-tabler-building" xmlns="http://www.w3.org/2000/svg" width="24"
                          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                          stroke-linecap="round" stroke-linejoin="round">
@@ -65,7 +65,20 @@
             </li>
             <li>
                 <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                   href="{{ route('job.index') }}">
+                   href="{{ route('list.jobseekers') }}">
+                    <svg class="icon icon-tabler icon-tabler-user" xmlns="http://www.w3.org/2000/svg" width="24"
+                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                    </svg>
+                    <span class="ml-3 flex-1 whitespace-nowrap">Jobseekers</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                   href="{{ route('list.jobs') }}">
                     <svg class="icon icon-tabler icon-tabler-file-description" xmlns="http://www.w3.org/2000/svg"
                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                          fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -91,6 +104,21 @@
                         <path d="M9 13h6"></path>
                     </svg>
                     <span class="ml-3 flex-1 whitespace-nowrap">Beranda</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                   href="{{ route('logout') }}">
+                    <svg class="icon icon-tabler icon-tabler-file-description" xmlns="http://www.w3.org/2000/svg"
+                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                         fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                        <path d="M9 17h6"></path>
+                        <path d="M9 13h6"></path>
+                    </svg>
+                    <span class="ml-3 flex-1 whitespace-nowrap">Logout</span>
                 </a>
             </li>
         </ul>
