@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\JobSeekerController;
+use App\Http\Controllers\UserJobSeekerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::resource('/job', JobController::class);
     Route::get('/profile-employer', [JobController::class, 'profile'])->name('profile.employer');
-    Route::get('/profile-jobseeker', [JobController::class, 'profile'])->name('profile.jobseeker');
+    Route::get('/profile-jobseeker', [UserJobSeekerController::class, 'jobSeekerProfile'])->name('profile.jobseeker');
+    Route::post('/add', [UserJobSeekerController::class, 'store'])->name('profile.jobseeker.store');
 
     // Route::get('/employers', fn () => view('server-side.employers'))->name('employers');
     // Route::get('/jobseekers', fn () => view('server-side.jobseekers'))->name('jobseekers');
