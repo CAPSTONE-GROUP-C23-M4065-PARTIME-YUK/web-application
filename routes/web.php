@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/job', JobController::class);
     Route::get('/profile-employer', [JobController::class, 'profile'])->name('profile.employer');
     Route::get('/profile-jobseeker', [UserJobSeekerController::class, 'jobSeekerProfile'])->name('profile.jobseeker');
+    Route::get('/profile-jobseeker/create', [UserJobSeekerController::class, 'create'])->name('profile.jobseeker.create');
     Route::post('/add', [UserJobSeekerController::class, 'store'])->name('profile.jobseeker.store');
 
     // Route::get('/employers', fn () => view('server-side.employers'))->name('employers');

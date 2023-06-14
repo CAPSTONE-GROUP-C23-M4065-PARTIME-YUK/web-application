@@ -27,7 +27,7 @@ class UserJobSeekerController extends Controller
      */
     public function create()
     {
-        //
+        return view ('user.jobseeker.create');
     }
 
     /**
