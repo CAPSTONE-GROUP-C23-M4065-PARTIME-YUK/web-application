@@ -66,6 +66,13 @@
                           @endif
                         </div>
                         <div class="sm:col-span-2">
+                          <label for="company_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tentang Perusahaan</label>
+                          <textarea id="company_description" name="company_description" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lengkapi alamat perusahaan dengan benar..."></textarea>
+                          @if ($errors->has('company_description'))
+                            <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('company_description') }}</strong>
+                          @endif
+                        </div>
+                        <div class="sm:col-span-2">
                           <label for="company_province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
                           <input list="province" name="company_province" class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" placeholder="Pilih/cari provinsi">
                           <datalist id="province">
@@ -92,10 +99,10 @@
                         <div class="sm:col-span-2">
                           <label for="company_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Lengkap Perusahaan</label>
                           <textarea id="company_address" name="company_address" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lengkapi alamat perusahaan dengan benar..."></textarea>
-                        </div>
-                        @if ($errors->has('company_address'))
+                          @if ($errors->has('company_address'))
                             <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('company_address') }}</strong>
                           @endif
+                        </div>
                     </div>
                     <div class="flex items-center space-x-4">
                         <button class="focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 rounded-lg bg-accent1 px-5 py-2.5 text-center text-sm font-medium text-white transition-all hover:translate-x-1 focus:outline-none focus:ring-4"
