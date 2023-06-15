@@ -23,7 +23,7 @@
                         dengan perusahaan, menemukan pekerjaan paruh waktu dan magang, serta memulai perjalanan kariermu.
                     </p>
 
-                    <form class="mt-8 grid grid-cols-6 gap-6" action="{{ route('register') }}" method="POST">
+                    <form class="mt-8 grid grid-cols-6 gap-6" action="{{ route('register') }}" method="POST" autocomplete="off">
                         @csrf
                         <div class="col-span-6">
                             <label class="block text-sm font-medium text-gray-700" for="name">

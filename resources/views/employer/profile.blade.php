@@ -1,87 +1,53 @@
 @extends('layouts.main')
 @section('main')
-    <section class="flex h-full flex-1 flex-col bg-slate-100">
-        <div class="flex-1 lg:grid lg:min-h-full lg:grid-cols-12">
-            <aside
-                   class="relative hidden h-16 items-center justify-center bg-gradient-to-r from-slate-100 to-accent1 lg:order-last lg:col-span-5 lg:flex lg:h-full xl:col-span-6">
-                <img class="inset-0 h-1/2 w-1/2" src="{{ asset('images/register-hero-1.svg') }}" alt="Pattern" />
-            </aside>
-
-            <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
-                  aria-label="Main">
-                <div class="max-w-xl lg:max-w-3xl">
-                    <a class="flex w-full items-center justify-center text-accent1" href="/">
-                        <img src="{{ asset('images/emblem.png') }}" alt="">
+    <section class="flex h-full flex-1 flex-col bg-slate-100 p-10">
+        @if ($cekprofil === null)
+            <div class="max-w-none mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex">
+                <a href="#">
+                    <img class="rounded-t-lg h-auto max-w-lg" src="https://www.worldharvest.id/images/image-not-available.png" alt="" />
+                </a>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Anda Belum Melengkapi Profil Perusahaan!</h5>
                     </a>
-
-                    <h1 class="mt-6 text-center text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                        Selamat Datang Kembali!
-                    </h1>
-
-                    <p class="mt-4 text-center leading-relaxed text-gray-500">
-                        Masuk ke akun Anda untuk melanjutkan perjalanan karier Anda.
-                    </p>
-
-                    <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" action="{{ route('login') }}" method="POST">
-                        @csrf
-                        <div>
-                            <label class="sr-only" for="email">Email</label>
-
-                            <div class="relative">
-                                <input class="pe-12 w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm" type="email"
-                                       placeholder="Input email" name="email" />
-
-                                <span class="end-0 absolute inset-y-0 grid place-content-center px-4">
-                                    <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                    </svg>
-                                </span>
-                            </div>
-                            @if ($errors->has('email'))
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                          class="font-medium">Oops!</span> {{ $errors->first('email') }}</p>
-                            @endif
-                        </div>
-
-                        <div>
-                            <label class="sr-only" for="password">Password</label>
-
-                            <div class="relative">
-                                <input class="pe-12 w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm" type="password"
-                                       placeholder="Input password" name="password" />
-
-                                <span class="end-0 absolute inset-y-0 grid place-content-center px-4">
-                                    <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg>
-                                </span>
-                            </div>
-                            @if ($errors->has('password'))
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                          class="font-medium">Oops!</span> {{ $errors->first('password') }}</p>
-                            @endif
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm text-gray-500">
-                                Belum punya akun?
-                                <a class="underline" href="{{ route('register') }}">Daftar di sini.</a>
-                            </p>
-
-                            <button class="inline-block rounded-lg bg-accent1 px-5 py-3 text-sm font-medium text-white"
-                                    type="submit">
-                                Masuk
-                            </button>
-                        </div>
-                    </form>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Silahkan lengkapi profil perusahaan Anda dengan data yang valid.</p>
+                    <a href="{{ route('employer.create') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Lengkapi Profil
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
                 </div>
-            </main>
-        </div>
+            </div>
+        @else
+            @if (Session::has('message'))
+                <div id="alert-3" class="flex p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ml-3 text-sm font-medium">
+                        {{ Session::get('message') }}
+                    </div>
+                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            @endif
+            <div class="max-w-none mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex">
+                <a href="#">
+                    <img class="rounded-t-lg h-auto max-w-lg" src="images/employers-logo/{{ $cekprofil->company_logo }}" alt="" />
+                </a>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $cekprofil->company_name }}</h5>
+                    </a>
+                    <h3>Owner: {{ $cekprofil->user_id }}</h3>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">website: <span class="text-blue-700">{{ $cekprofil->company_website }}</span> | email: <span class="text-blue-700">{{ $cekprofil->company_email }}</span> | no.telp: <span class="text-blue-700">{{ $cekprofil->company_phone }}</span></p>
+
+                    <a href="{{ route('employer.create') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Edit Profile
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            </div>
+        @endif
     </section>
 @endsection

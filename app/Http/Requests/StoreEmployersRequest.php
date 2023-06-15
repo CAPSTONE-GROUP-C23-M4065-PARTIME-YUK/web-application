@@ -13,7 +13,7 @@ class StoreEmployersRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class StoreEmployersRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'company_name' => 'required',
+            'company_logo' => 'required|image|mimes:jpeg,png',
+            'company_website' => 'required',
+            'company_email' => 'required',
+            'company_phone' => 'required|numeric',
+            'company_province' => 'required',
+            'company_regency' => 'required',
+            'company_address' => 'required'
         ];
     }
 }

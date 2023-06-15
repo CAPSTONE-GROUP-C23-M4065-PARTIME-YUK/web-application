@@ -87,10 +87,4 @@ class JobController extends Controller
     {
         //
     }
-
-
-    public function profile()
-    {
-        return view('employer.profile');
-    }
 }

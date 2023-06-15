@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employers;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEmployersRequest;
 use App\Http\Requests\UpdateEmployersRequest;
+use App\Models\Province;
+use App\Models\Regency;
+use Illuminate\Support\Facades\Redirect;
+
 
 class EmployersController extends Controller
 {
@@ -25,7 +30,16 @@ class EmployersController extends Controller
      */
     public function create()
     {
-        //
+        $cekprofil = Employers::where('user_id', Auth::user()->id)->first();
+        if ($cekprofil !== null) {
+            return Redirect::route('profile.employer');
+        } else {
+            $getprovinsi = Province::all();
+            $getkota = Regency::all();
+            return view('employer.create-profile', compact([
+                'getprovinsi', 'getkota'
+            ]));
+        }
     }
 
     /**
@@ -36,7 +50,16 @@ class EmployersController extends Controller
      */
     public function store(StoreEmployersRequest $request)
     {
-        //
+        $data = $request->all();
+        
+        $company_logo = $data['company_logo'];
+        $filename = strtolower(Auth::user()->id . time() . '-' . $company_logo->getClientOriginalName());
+        $destinationPath = public_path('images/employers-logo');
+        $company_logo->move($destinationPath, $filename);
+        $data['company_logo'] = strtolower(Auth::user()->id . time() . '-' . $company_logo->getClientOriginalName());
+
+        Employers::create($data);
+        return Redirect::route('profile.employer')->with('message', 'Berhasil memperbarui profile.');
     }
 
     /**
@@ -84,5 +107,13 @@ class EmployersController extends Controller
     {
         $employers = Employers::find($employers);
         dd($employers);
+    }
+
+    public function profile()
+    {
+        $cekprofil = Employers::where('user_id', Auth::user()->id)->first();
+        return view('employer.profile', compact([
+            'cekprofil'
+        ]));
     }
 }

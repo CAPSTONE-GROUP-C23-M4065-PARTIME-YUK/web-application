@@ -22,7 +22,7 @@
                         Masuk ke akun Anda untuk melanjutkan perjalanan karier Anda.
                     </p>
 
-                    <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" action="{{ route('login') }}" method="POST">
+                    <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" action="{{ route('login') }}" method="POST" autocomplete="off">
                         @csrf
                         <div>
                             <label class="sr-only" for="email">Email</label>
