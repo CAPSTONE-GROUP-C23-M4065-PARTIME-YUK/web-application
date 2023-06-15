@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('company_logo')->nullable();
             $table->string('company_website');
             $table->string('company_email');
+            $table->string('company_phone');
+            $table->string('company_province');
+            $table->string('company_regency');
+            $table->string('company_address');
             $table->timestamps();
         });
     }

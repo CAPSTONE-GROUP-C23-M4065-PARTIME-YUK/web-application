@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id');
-            $table->foreignId('job_seeker_id');
-            $table->string('status');
+            $table->foreignId('job_id')->constrained('jobs');
+            $table->foreignId('job_seeker_id')->constrained('job_seekers');
+            // $table->string('status');
             $table->timestamps();
         });
     }

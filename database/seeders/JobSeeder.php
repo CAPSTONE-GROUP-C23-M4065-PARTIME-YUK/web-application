@@ -18,10 +18,9 @@ class JobSeeder extends Seeder
     {
         DB::table('jobs')->insert([
             [
-                'job_category_id' => '1',
-                'campus_id' =>  '1',
                 'employer_id' => '1',
-                'title' => 'Back End Engineer',
+                'category' => 'Back End Engineer',
+                'title' => 'Dibutuhkan Back End Engineer Node.JS',
                 'description' => 'Dibutuhkan Senior back end engineer segera',
                 'requirement' => 'bahasa pemrograman php',
                 'location' => 'Bandung',
