@@ -23,7 +23,6 @@ class JobSeeder extends Seeder
                 'title' => 'Dibutuhkan Back End Engineer Node.JS',
                 'description' => 'Dibutuhkan Senior back end engineer segera',
                 'requirement' => 'bahasa pemrograman php',
-                'location' => 'Bandung',
                 'salary' => '2000000',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Models\Employers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 
 class JobController extends Controller
 {
@@ -15,8 +19,10 @@ class JobController extends Controller
      */
     public function index()
     {
-        // return view('admin.job.index');
-        return view('employer.index');
+        $getUserId = Employers::where('user_id', Auth::user()->id)->first();
+        $joblist = Job::where('employer_id', $getUserId->id)->select('*')->get();
+        $numbtable = 1;
+        return view('jobs.index', compact(['joblist', 'numbtable']));
     }
 
     /**
@@ -26,8 +32,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        // return view('admin.job.create');
-        return view('employer.create-job');
+        $cekprofil = Employers::where('user_id', Auth::user()->id)->first();
+        return view('jobs.create-job', compact(['cekprofil']));
     }
 
     /**
@@ -38,7 +44,9 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        dd(request());
+        $data = $request->all();
+        Job::create($data);
+        return Redirect::route('job.index')->with('message', 'Berhasil menambah lowongan parttime baru.');
     }
 
     /**
@@ -62,7 +70,7 @@ class JobController extends Controller
     {
         // dd($job);
         // return view('admin.job.edit');
-        return view('employer.edit-job');
+        return view('jobs.edit-job');
     }
 
     /**

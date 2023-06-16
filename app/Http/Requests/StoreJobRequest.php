@@ -24,7 +24,11 @@ class StoreJobRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'requirement' => 'required',
+            'salary' => 'required|numeric'
         ];
     }
 }

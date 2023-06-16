@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employer_id')->constrained('employers');
-            $table->string('category');
             $table->string('title');
+            $table->string('category');
             $table->text('description');
             $table->text('requirement');
-            $table->string('location');
             $table->integer('salary');
             $table->timestamps();
         });
