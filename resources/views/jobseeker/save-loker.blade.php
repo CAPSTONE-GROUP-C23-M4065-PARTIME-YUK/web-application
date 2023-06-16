@@ -24,29 +24,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( $data as $jobs)
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="px-6 py-4">
-                    {{ $numb++ }}
+                @foreach ( $data as $jobs)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4">
+                        {{ $numb++ }}
+                        </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ $jobs->company_name }}
+                    </th>
+                    <td class="px-6 py-4">
+                    {{ $jobs->category }}
                     </td>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ $jobs->company_name }}
-                </th>
-                <td class="px-6 py-4">
-                {{ $jobs->category }}
+                    <td class="px-6 py-4">
+                    {{ $jobs->salary }}
+                    </td>
+                    <td>
+                    <form action="{{ route('delete.loker', $jobs->id) }}" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button onclick="return confirm('Yakin')">Delete</button>
+                    </form>
                 </td>
-                <td class="px-6 py-4">
-                {{ $jobs->salary }}
-                </td>
-                <td>
-                <form action="{{ route('delete.loker', $jobs->id) }}" method="post" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button onclick="return confirm('Yakin')">Delete</button>
-                </form>
-            </td>
-            </tr>
-            @endforeach
+                </tr>
+                @endforeach
         </tbody>
     </table>
 </div>

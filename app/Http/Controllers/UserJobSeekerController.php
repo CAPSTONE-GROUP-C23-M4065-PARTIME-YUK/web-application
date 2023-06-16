@@ -120,39 +120,35 @@ class UserJobSeekerController extends Controller
     }
     
     public function uploadResume(Request $request)
-{
-    $data = Auth::user()->jobSeeker;
-    $data->address = $request->address;
-    $data->phone_number = $request->phone_number;
-
-    if ($request->hasFile('resume')) {
-        if ($data->resume) {
-            Storage::disk('public')->delete($data->resume);
-        }
-
-        $resumeFile = $request->file('resume');
-
-        $allowedExtensions = ['pdf'];
-        $fileExtension = $resumeFile->getClientOriginalExtension();
-
-        if (!in_array($fileExtension, $allowedExtensions)) {
-            return redirect()->back()->withInput()->withErrors(['resume' => 'Silahkan Masukkan File dalam bentuk PDF']);
-        }
-        $resumeFileName = time() . '_' . $resumeFile->getClientOriginalName();
-        $resumePath = $request->file('resume')->storeAs('resumes', $resumeFileName, 'public');
-        $data->resume = $resumePath;
-    }
-
-    $data->save();
-
-    return redirect()->route('profile.jobseeker')->with('success', 'Data Berhasil Diperbaharui');
-}
-
-    public function downloadResume($id)
     {
-        $data = JobSeeker::find($id);
-        $pathToFile = public_path('storage/' . $data->resume);
-        return response()->download($pathToFile);
-    }
+        $data = Auth::user()->jobSeeker;
+        $data->address = $request->address;
+        $data->phone_number = $request->phone_number;
 
+        if ($request->hasFile('resume')) {
+            if ($data->resume) {
+                if (file_exists(public_path($data->resume))) {
+                    unlink(public_path($data->resume));
+                }
+            }
+
+            $resumeFile = $request->file('resume');
+
+            $allowedExtensions = ['pdf'];
+            $fileExtension = $resumeFile->getClientOriginalExtension();
+
+            if (!in_array($fileExtension, $allowedExtensions)) {
+                return redirect()->back()->withInput()->withErrors(['resume' => 'Silahkan Masukkan File dalam bentuk PDF']);
+            }
+
+            $resumeFileName = time() . '_' . $resumeFile->getClientOriginalName();
+            $resumePath = 'resumes/' . $resumeFileName;
+            $resumeFile->move(public_path('resumes'), $resumeFileName);
+            $data->resume = $resumePath;
+        }
+
+        $data->save();
+
+        return redirect()->route('profile.jobseeker')->with('success', 'Data Berhasil Diperbaharui');
+    }
 }

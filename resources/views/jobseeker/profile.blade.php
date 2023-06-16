@@ -41,7 +41,7 @@
        <span>Anda belum mengupload resume. Silahkan upload Resume anda <a href="{{ url('/resume') }}" class="text-blue-700">disini!</a><span>
         @else 
         @foreach($data as $jobSeeker)
-        <a href="{{ route('resume.download', $jobSeeker->id) }}" class="text-blue-700">{{ auth()->user()->jobSeeker->resume }}</a>
+        <embed src="{{ auth()->user()->jobSeeker->resume }}" type="application/pdf" width="100%" height="600px">
         @endforeach
         @endif
     </div>

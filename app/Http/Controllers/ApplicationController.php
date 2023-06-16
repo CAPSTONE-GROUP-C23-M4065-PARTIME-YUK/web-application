@@ -18,12 +18,13 @@ class ApplicationController extends Controller
     public function index()
     {
         $numb = 1;
+        $jobseeker = Auth::user()->jobSeeker->id;
         $data = Application::where('job_seeker_id', Auth::user()->jobSeeker->id)
         ->join('jobs', 'applications.job_id', '=', 'jobs.id')
         ->join('employers', 'jobs.employer_id', '=', 'employers.id')
-        ->select('applications.*', 'jobs.*', 'employers.*')
+        ->select('applications.*', 'jobs.category', 'jobs.salary','employers.company_name')
         ->get();
-        return view('jobseeker.save-loker', compact('data', 'numb'));
+        return view('jobseeker.save-loker', compact('data', 'numb', 'jobseeker'));
     }
 
     /**
@@ -95,11 +96,10 @@ class ApplicationController extends Controller
      * @param  \App\Models\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Application $application)
+    public function destroy($id)
     {
-    $data = Application::find($application->id);
-    $data->delete();
-
-        return redirect()->route('save.loker')->with('message', 'Berhasil menghapus lamaran.');
+        $data = Application::find($id);
+        $data->delete();
+        return redirect()->back()->with('message', 'Berhasil menghapus lamaran.');
     }
 }
