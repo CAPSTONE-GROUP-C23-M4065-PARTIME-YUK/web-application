@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEmployersRequest;
 use App\Models\Province;
 use App\Models\Regency;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 
 
 class EmployersController extends Controller
@@ -100,6 +101,13 @@ class EmployersController extends Controller
     {
         $data = $request->all();
         if ($request->hasFile('company_logo')) {
+            $path = public_path('images/employers-logo/');
+            $oldpic = Employers::where('id', $employer->id)->select('company_logo')->first();
+
+            if (File::exists($path . $oldpic->company_logo)) {
+                File::delete($path . $oldpic->company_logo);
+            }
+
             $company_logo = $data['company_logo'];
             $filename = strtolower(Auth::user()->id . time() . '-' . $company_logo->getClientOriginalName());
             $destinationPath = public_path('images/employers-logo');
