@@ -24,7 +24,15 @@ class UpdateEmployersRequest extends FormRequest
     public function rules()
     {
         return [
-            request()
+            'company_name' => 'required',
+            'company_logo' => 'image|mimes:jpeg,png',
+            'company_website' => 'required',
+            'company_email' => 'required',
+            'company_phone' => 'required|numeric',
+            'company_description' => 'required',
+            'company_province' => 'required',
+            'company_regency' => 'required',
+            'company_address' => 'required'
         ];
     }
 }

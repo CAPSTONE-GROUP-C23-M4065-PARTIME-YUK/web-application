@@ -82,7 +82,11 @@ class EmployersController extends Controller
     public function edit($employers)
     {
         $employers = Employers::find($employers);
-        return view('admin.employer.edit');
+        $getprovinsi = Province::all();
+        $getkota = Regency::all();
+        return view('employer.edit-profile', compact([
+            'employers', 'getprovinsi', 'getkota'
+        ]));
     }
 
     /**
@@ -92,9 +96,18 @@ class EmployersController extends Controller
      * @param  \App\Models\Employers  $employers
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEmployersRequest $request, Employers $employers)
+    public function update(UpdateEmployersRequest $request, Employers $employer)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('company_logo')) {
+            $company_logo = $data['company_logo'];
+            $filename = strtolower(Auth::user()->id . time() . '-' . $company_logo->getClientOriginalName());
+            $destinationPath = public_path('images/employers-logo');
+            $company_logo->move($destinationPath, $filename);
+            $data['company_logo'] = strtolower(Auth::user()->id . time() . '-' . $company_logo->getClientOriginalName());
+        }
+        Employers::find($employer->id)->update($data);
+        return Redirect::route('profile.employer')->with('message', 'Berhasil memperbarui profile perusahaan.');
     }
 
     /**
@@ -111,7 +124,7 @@ class EmployersController extends Controller
 
     public function profile()
     {
-        $cekprofil = Employers::where('user_id', Auth::user()->id)->first();
+        $cekprofil = Employers::join('users', 'employers.user_id', '=', 'users.id')->select('employers.*', 'users.name')->where('user_id', Auth::user()->id)->first();
         return view('employer.profile', compact([
             'cekprofil'
         ]));
