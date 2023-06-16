@@ -7,7 +7,10 @@
           <form action="{{ route('job.store') }}" method="POST">
               @csrf
               <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <input type="hidden" name="employer_id" value="{{ $cekprofil->id }}">
+                @if ($cekprofil === null)
+                @else
+                    <input type="text" name="employer_id" value="{{ $cekprofil->id }}">
+                @endif
                   <div class="sm:col-span-2">
                       <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white" for="title">Judul
                           Lowongan</label>

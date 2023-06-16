@@ -20,9 +20,13 @@ class JobController extends Controller
     public function index()
     {
         $getUserId = Employers::where('user_id', Auth::user()->id)->first();
-        $joblist = Job::where('employer_id', $getUserId->id)->select('*')->get();
-        $numbtable = 1;
-        return view('jobs.index', compact(['joblist', 'numbtable']));
+        if ($getUserId === null) {
+            return Redirect::route('employer.create')->with('message', 'Lengkapi profil perusahaan Anda terlebih dahulu melalui form di bawah ini sebelum mengakses halaman "Data Lowongan".');
+        } else {
+            $joblist = Job::where('employer_id', $getUserId->id)->select('*')->get();
+            $numbtable = 1;
+            return view('jobs.index', compact(['joblist', 'numbtable']));
+        }
     }
 
     /**
