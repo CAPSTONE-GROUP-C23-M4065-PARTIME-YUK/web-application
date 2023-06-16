@@ -68,9 +68,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        // dd($job);
-        // return view('admin.job.edit');
-        return view('jobs.edit-job');
+        return view('jobs.edit-job', compact(['job']));
     }
 
     /**
@@ -82,7 +80,9 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, Job $job)
     {
-        //
+        $data = $request->all();
+        Job::find($job->id)->update($data);
+        return Redirect::route('job.index')->with('message', 'Berhasil memperbarui lowongan parttime.');
     }
 
     /**
@@ -93,6 +93,7 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+        return Redirect::route('job.index')->with('message', 'Berhasil menghapus lowongan parttime.');
     }
 }
