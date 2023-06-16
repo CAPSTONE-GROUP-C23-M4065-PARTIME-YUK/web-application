@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+
 
 
 class UserJobSeekerController extends Controller
@@ -100,7 +103,7 @@ class UserJobSeekerController extends Controller
             ->where('users.id', '=', Auth::user()->id)
             ->get();
         
-        return view('user.jobseeker.profile', ['data' => $data]);
+        return view('jobseeker.profile', ['data' => $data]);
     }
 
     public function resume()
@@ -112,27 +115,37 @@ class UserJobSeekerController extends Controller
             ->where('users.id', '=', $user->id)
             ->get();
     
-        return view('user.jobseeker.resume', compact('data', 'user'));
+        return view('jobseeker.resume', compact('data', 'user'));
     }
     
     public function uploadResume(Request $request)
-    {
-        $data = Auth::user()->jobSeeker;
-        $data->address = $request->address;
-        $data->phone_number = $request->phone_number;
+{
+    $data = Auth::user()->jobSeeker;
+    $data->address = $request->address;
+    $data->phone_number = $request->phone_number;
 
-        if ($request->hasFile('resume')) {
-            $resumeFile = $request->file('resume');
-            $resumeFileName = time() . '_' . $resumeFile->getClientOriginalName();
-            $resumePath = $request->file('resume')->storeAs('resumes', $resumeFileName, 'public');
-            $data->resume = $resumePath;
+    if ($request->hasFile('resume')) {
+        if ($data->resume) {
+            Storage::disk('public')->delete($data->resume);
         }
-    
 
-        $data->save();
+        $resumeFile = $request->file('resume');
 
-        return redirect()->route('profile.jobseeker')->with('success', 'Resume berhasil diupload');
+        $allowedExtensions = ['pdf'];
+        $fileExtension = $resumeFile->getClientOriginalExtension();
+
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            return redirect()->back()->withInput()->withErrors(['resume' => 'Silahkan Masukkan File dalam bentuk PDF']);
+        }
+        $resumeFileName = time() . '_' . $resumeFile->getClientOriginalName();
+        $resumePath = $request->file('resume')->storeAs('resumes', $resumeFileName, 'public');
+        $data->resume = $resumePath;
     }
+
+    $data->save();
+
+    return redirect()->route('profile.jobseeker')->with('success', 'Data Berhasil Diperbaharui');
+}
 
     public function downloadResume($id)
     {
