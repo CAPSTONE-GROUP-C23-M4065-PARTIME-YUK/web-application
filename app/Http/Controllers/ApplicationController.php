@@ -6,6 +6,8 @@ use App\Models\Application;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class ApplicationController extends Controller
 {
     /**
@@ -15,7 +17,13 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $numb = 1;
+        $data = Application::where('job_seeker_id', Auth::user()->jobSeeker->id)
+        ->join('jobs', 'applications.job_id', '=', 'jobs.id')
+        ->join('employers', 'jobs.employer_id', '=', 'employers.id')
+        ->select('applications.*', 'jobs.*', 'employers.*')
+        ->get();
+        return view('jobseeker.save-loker', compact('data', 'numb'));
     }
 
     /**
@@ -36,7 +44,15 @@ class ApplicationController extends Controller
      */
     public function store(StoreApplicationRequest $request)
     {
-        //
+        $jobSeekerId = auth()->user()->jobSeeker->id;
+        $applicationData = $request->all();
+            $applicationData['job_seeker_id'] = $jobSeekerId;
+
+            Application::create($applicationData);
+
+
+
+        return redirect()->route('save.loker')->with('message', 'Berhasil melamar pekerjaan.');
     }
 
     /**
@@ -81,6 +97,9 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+    $data = Application::find($application->id);
+    $data->delete();
+
+        return redirect()->route('save.loker')->with('message', 'Berhasil menghapus lamaran.');
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Models\Application;
 use App\Models\Employers;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -99,5 +101,23 @@ class JobController extends Controller
     {
         $job->delete();
         return Redirect::route('job.index')->with('message', 'Berhasil menghapus lowongan parttime.');
+    }
+
+    public function allJobs()
+    {
+        $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->select('jobs.*', 'employers.company_name')->get();
+        $numb = 1;
+        return view ('jobs.all-jobs', compact(['data', 'numb']));
+    }
+
+    public function detailJob($id)
+    {
+        $job = Job::find($id);
+        $jobWithEmployer = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')
+                                ->where('jobs.id', $id)
+                                ->select('jobs.*', 'employers.*')
+                                ->first();
+    
+        return view('jobs.detail-jobs', compact('jobWithEmployer'));
     }
 }

@@ -9,4 +9,10 @@ class Employers extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+
+    public function application()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

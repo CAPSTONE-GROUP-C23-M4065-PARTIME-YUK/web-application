@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = [''];
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
+    public function jobSeeker()
+    {
+        return $this->belongsTo(jobSeeker::class);
+    }
 }

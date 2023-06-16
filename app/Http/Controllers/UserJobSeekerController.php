@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\jobSeeker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class UserJobSeekerController extends Controller
      */
     public function create()
     {
-        return view ('user.jobseeker.create');
+        return view ('jobseeker.create');
     }
 
     /**

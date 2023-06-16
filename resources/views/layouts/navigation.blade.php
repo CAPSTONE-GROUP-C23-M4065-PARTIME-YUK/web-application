@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
-                       href="#">Jobs</a>
+                       href="{{ url('/all-jobs') }}">Jobs</a>
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
@@ -67,7 +67,7 @@
                                         </li>
                                     @elseif (auth()->user()->role == 'jobseeker')
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lowongan Disimpan</a>
+                                            <a href="{{ url('/save-loker') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lowongan Disimpan</a>
                                         </li>
                                         <li>
                                             <a href="{{ url('/resume') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Resume</a>

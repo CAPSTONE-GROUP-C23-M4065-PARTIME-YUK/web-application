@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -44,8 +45,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     
     Route::resource('/employer', EmployersController::class);
+
     Route::resource('/job', JobController::class);
+    Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
+    Route::get('/{id}/detail', [JobController::class, 'detailJob'])->name('job.edit');
+    Route::post('/save-job', [ApplicationController::class, 'store'])->name('store.job');
+    Route::get('/save-loker', [ApplicationController::class, 'index'])->name('save.loker');
+    Route::delete('/application/{id}', [ApplicationController::class, 'destroy'])->name('delete.loker');
+    // Employers
     Route::get('/profile-employer', [EmployersController::class, 'profile'])->name('profile.employer');
+
+    // Jobseeker
     Route::get('/profile-jobseeker', [UserJobSeekerController::class, 'jobSeekerProfile'])->name('profile.jobseeker');
     Route::get('/profile-jobseeker/create', [UserJobSeekerController::class, 'create'])->name('profile.jobseeker.create');
     Route::post('/add', [UserJobSeekerController::class, 'store'])->name('profile.jobseeker.store');
