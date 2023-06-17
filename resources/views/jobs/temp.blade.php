@@ -55,7 +55,7 @@
         <div id="jobs">
             <h1 class="mb-4 text-3xl font-semibold">List Lowongan</h1>
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                @foreach ($data as $job)
+                @for ($i = 1; $i < 20; $i++)
                     <div class="relative overflow-hidden rounded-lg transition-all hover:translate-y-1 hover:bg-accent1/20"
                          id="outer-card ">
                         <a class="absolute top-8 right-4 z-10 text-accent1 transition-all hover:text-accent2"
@@ -68,20 +68,20 @@
                             </svg>
                         </a>
                         <a class="relative block overflow-hidden rounded-lg border border-accent1 p-4 transition-all sm:p-6 lg:p-8"
-                           href="{{ url($job->id . '/detail') }}">
+                           href="#">
 
                             <div class="flex flex-row-reverse justify-end gap-4">
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                                        {{ $job->title }} <span class="text-xs font-medium text-gray-600">({{ $job->category }})</span>
+                                        Software Developer
                                     </h3>
 
-                                    <p class="mt-1 text-xs font-medium text-gray-600">{{ $job->company_name }}</p>
+                                    <p class="mt-1 text-xs font-medium text-gray-600">PT.Dicoding</p>
                                 </div>
 
                                 <div class="block sm:block sm:shrink-0">
                                     <img class="h-16 w-16 rounded-lg object-cover shadow-sm"
-                                         src="{{ $job->company_logo ? asset('images/'.$job->company_logo) : asset('images/defaultCompLogo.png') }}" alt="{{ $job->company_name}} Logo" />
+                                         src="{{ asset('images/compLogo.webp') }}" alt="Dicoding" />
                                 </div>
                             </div>
 
@@ -97,7 +97,7 @@
                                               d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z">
                                         </path>
                                     </svg>
-                                    {{ $job->company_province }}, {{ $job->company_regency }}
+                                    Bandung
                                 </p>
                                 <p class="line-clamp-1 flex max-w-[40ch] items-center gap-1 text-sm text-gray-500">
                                     <svg class="icon icon-tabler icon-tabler-currency-dollar"
@@ -110,7 +110,7 @@
                                         </path>
                                         <path d="M12 3v3m0 12v3"></path>
                                     </svg>
-                                    IDR {{ number_format($job->salary, 2, ',', '.') }}
+                                    IDR 9.000.000 - 11.000.000
                                 </p>
                                 <p class="line-clamp-1 flex max-w-[40ch] items-center gap-1 text-sm text-gray-500">
                                     <svg class="icon icon-tabler icon-tabler-briefcase" xmlns="http://www.w3.org/2000/svg"
@@ -133,12 +133,12 @@
                                 <div class="flex gap-4 sm:gap-6">
                                     <div class="flex flex-col gap-1">
                                         <dt class="text-sm font-medium text-gray-600">Diunggah</dt>
-                                        <dd class="text-xs text-gray-500">{{ $job->created_at->diffForHumans() }}</dd>
+                                        <dd class="text-xs text-gray-500">20 Juni 2023</dd>
                                     </div>
 
                                     <div class="flex flex-col gap-1">
                                         <dt class="text-sm font-medium text-gray-600">Tipe</dt>
-                                        <dd class="text-xs text-gray-500">Part Time</dd>
+                                        <dd class="text-xs text-gray-500">Magang</dd>
                                     </div>
                                 </div>
 
@@ -148,8 +148,7 @@
                             </dl>
                         </a>
                     </div>
-                @endforeach
-
+                @endfor
             </div>
         </div>
     </main>

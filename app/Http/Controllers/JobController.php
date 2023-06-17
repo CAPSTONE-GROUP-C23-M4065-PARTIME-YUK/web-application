@@ -107,7 +107,7 @@ class JobController extends Controller
     {
         $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->select('jobs.*', 'employers.*')->get();
         $numb = 1;
-        dd($data);
+        // dd($data);
         return view('jobs.all-jobs', compact(['data', 'numb']));
     }
 
