@@ -7,6 +7,7 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Application;
 use App\Models\Employers;
+use App\Models\JobCategory;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -38,8 +39,9 @@ class JobController extends Controller
      */
     public function create()
     {
+        $jobcategory = JobCategory::orderBy('category', 'asc')->get();
         $cekprofil = Employers::where('user_id', Auth::user()->id)->first();
-        return view('jobs.create-job', compact(['cekprofil']));
+        return view('jobs.create-job', compact(['cekprofil', 'jobcategory']));
     }
 
     /**

@@ -22,26 +22,15 @@
                   </div>
                   <div class="sm:col-span-2">
                       <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                              for="category">Kategori Pekerjaan</label>
-                      <select class="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" id="category" name="category">
+                              for="job_category_id">Kategori Pekerjaan</label>
+                      <select class="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" id="job_category_id" name="job_category_id">
                           <option value="">- Pilih Kategori -</option>
-                          <option value="Sistem Analisis">Sistem Analisis</option>
-                          <option value="Programmer">Programmer</option>
-                          <option value="Technical Engineer">Technical Engineer</option>
-                          <option value="Networking Engineer">Networking Engineer</option>
-                          <option value="EDP Operator">EDP Operator</option>
-                          <option value="System Administrator">System Administrator</option>
-                          <option value="IT Business Development">IT Business Development</option>
-                          <option value="Tata Usaha">Tata Usaha</option>
-                          <option value="Desainer Grafis">Desainer Grafis</option>
-                          <option value="Animator">Animator</option>
-                          <option value="Penulis ">Penulis </option>
-                          <option value="Project Manager">Project Manager</option>
-                          <option value="Web Designer">Web Designer</option>
-                          <option value="Web Programmer">Web Programmer</option>
+                          @foreach ($jobcategory as $listcategory)
+                              <option value="{{ $listcategory->id }}">{{ $listcategory->category }}</option>
+                          @endforeach
                       </select>
-                    @if ($errors->has('category'))
-                        <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('category') }}</strong>
+                    @if ($errors->has('job_category_id'))
+                        <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('job_category_id') }}</strong>
                     @endif
                   </div>
                   <div class="sm:col-span-2">
@@ -64,9 +53,34 @@
                   </div>
                   <div class="sm:col-span-2">
                       <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                              for="salary">Gaji</label>
+                              for="experience">Experience</label>
                       <input class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                              id="salary" name="salary" type="number" placeholder="2000000" min="0">
+                              id="experience" name="experience" type="text" placeholder="1 - 2 Tahun">
+                    @if ($errors->has('experience'))
+                        <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('experience') }}</strong>
+                    @endif
+                  </div>
+                  <div class="sm:col-span-2">
+                      <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                              for="tipe_lowongan">Jenis Lowongan</label>
+                      <select class="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" id="tipe_lowongan" name="tipe_lowongan">
+                          <option value="">- Pilih Jenis -</option>
+                          <option value="Freelance">Freelance</option>
+                          <option value="Magang">Magang</option>
+                          <option value="Remote">Remote</option>
+                          <option value="Onsite">Onsite</option>
+                          <option value="Kerja Kontrak">Kerja Kontrak</option>
+                          <option value="Kerja Tetap">Kerja Tetap</option>
+                      </select>
+                    @if ($errors->has('tipe_lowongan'))
+                        <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('tipe_lowongan') }}</strong>
+                    @endif
+                  </div>
+                  <div class="sm:col-span-2">
+                      <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                              for="salary">Gaji (Sesuaikan Format)</label>
+                      <input class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                              id="salary" name="salary" type="text" placeholder="2.000.000 - 4.000.000" oninput="this.value=this.value.replace(/[^ -.0-9]/, '')">
                     @if ($errors->has('salary'))
                         <strong class="text-red-600 lowercase">&nbsp;* {{ $errors->first('salary') }}</strong>
                     @endif

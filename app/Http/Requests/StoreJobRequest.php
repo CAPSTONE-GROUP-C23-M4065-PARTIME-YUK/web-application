@@ -25,10 +25,12 @@ class StoreJobRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'category' => 'required',
+            'job_category_id' => 'required',
             'description' => 'required',
             'requirement' => 'required',
-            'salary' => 'required|numeric'
+            'experience' => 'required',
+            'tipe_lowongan' => 'required',
+            'salary' => 'required'
         ];
     }
 }
