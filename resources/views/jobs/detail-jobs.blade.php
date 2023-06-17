@@ -43,10 +43,14 @@
         <p class="mb-5 text-gray-700 dark:text-gray-400">{{ $jobWithEmployer->company_address }}</p>
 
       <form action="/save-job" method="POST">
-        @csrf
-        <input type="hidden" name="job_id" value="{{ $jobWithEmployer->id }}">
-        <input type="hidden" name="job_seeker_id" value="{{ Auth::user()->id }}">
-        <button type="submit" class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Save</button>
+          @csrf
+          <input type="hidden" name="job_id" value="{{ $jobWithEmployer->id }}">
+          <input type="hidden" name="job_seeker_id" value="{{ Auth::user()->id }}">
+          @if (auth()->user()->jobseeker === null)
+            <a href="{{ url ('/profile-jobseeker') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</a>
+          @else
+            <button type="submit" class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Save</button>
+          @endif
       </form>
     </div>
 </div>

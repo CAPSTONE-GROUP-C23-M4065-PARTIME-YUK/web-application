@@ -24,6 +24,7 @@ class ApplicationController extends Controller
         ->join('employers', 'jobs.employer_id', '=', 'employers.id')
         ->select('applications.*', 'jobs.category', 'jobs.salary','employers.company_name')
         ->get();
+        
         return view('jobseeker.save-loker', compact('data', 'numb', 'jobseeker'));
     }
 
@@ -47,11 +48,8 @@ class ApplicationController extends Controller
     {
         $jobSeekerId = auth()->user()->jobSeeker->id;
         $applicationData = $request->all();
-            $applicationData['job_seeker_id'] = $jobSeekerId;
-
-            Application::create($applicationData);
-
-
+        $applicationData['job_seeker_id'] = $jobSeekerId;
+        Application::create($applicationData);
 
         return redirect()->route('save.loker')->with('message', 'Berhasil melamar pekerjaan.');
     }
