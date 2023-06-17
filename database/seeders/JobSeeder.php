@@ -19,11 +19,13 @@ class JobSeeder extends Seeder
         DB::table('jobs')->insert([
             [
                 'employer_id' => '1',
-                'category' => 'Back End Engineer',
                 'title' => 'Dibutuhkan Back End Engineer Node.JS',
+                'job_category_id' => '4',
                 'description' => 'Dibutuhkan Senior back end engineer segera',
                 'requirement' => 'bahasa pemrograman php',
-                'salary' => '2000000',
+                'experience' => '2 - 3 Tahun',
+                'tipe_lowongan' => 'freelance',
+                'salary' => '2000000 - 4000000',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],

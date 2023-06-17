@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employer_id')->constrained('employers');
             $table->string('title');
-            $table->string('category');
+            $table->foreignId('job_category_id')->constrained('job_category');
             $table->text('description');
             $table->text('requirement');
-            $table->integer('salary');
+            $table->string('experience');
+            $table->string('tipe_lowongan');
+            $table->string('salary');
             $table->timestamps();
         });
     }
