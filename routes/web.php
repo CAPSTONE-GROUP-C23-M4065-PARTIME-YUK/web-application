@@ -48,7 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/job', JobController::class);
     Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
-    Route::get('/{id}/detail', [JobController::class, 'detailJob'])->name('job.edit');
+    Route::get('/{id}/detail', [JobController::class, 'detailJob'])->name('job.detail');
     Route::post('/save-job', [ApplicationController::class, 'store'])->name('store.job');
     Route::get('/save-loker', [ApplicationController::class, 'index'])->name('save.loker');
     Route::delete('/application/{id}', [ApplicationController::class, 'destroy'])->name('delete.loker');

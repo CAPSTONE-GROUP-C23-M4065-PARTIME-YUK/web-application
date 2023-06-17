@@ -46,9 +46,6 @@
                       Kategori Lowongan
                   </th>
                   <th class="px-6 py-3" scope="col">
-                      Deskripsi
-                  </th>
-                  <th class="px-6 py-3" scope="col">
                       Requirement
                   </th>
                   <th class="px-6 py-3" scope="col">
@@ -73,9 +70,6 @@
                         {{ $jobitem->category }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $jobitem->description }}
-                    </td>
-                    <td class="px-6 py-4">
                         {{ $jobitem->requirement }}
                     </td>
                     <td class="px-6 py-4">
@@ -84,7 +78,10 @@
                     <td class="px-6 py-4 text-right">
                         <div class="inline-flex overflow-hidden rounded-md text-slate-800 shadow-sm">
                             <a class="rounded-l-lg bg-accent4 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-                                href="{{ route('job.edit', $jobitem->id) }}">
+                                href="{{ route('job.detail', $jobitem->id) }}">
+                                Detail
+                            </a>
+                            <a href="{{ route('job.edit', $jobitem->id) }}" class="bg-accent2 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
                                 Edit
                             </a>
                             <form action="{{ route('job.destroy', $jobitem->id) }}" method="post">

@@ -26,7 +26,7 @@ class JobController extends Controller
         if ($getUserId === null) {
             return Redirect::route('employer.create')->with('message', 'Lengkapi profil perusahaan Anda terlebih dahulu melalui form di bawah ini sebelum mengakses halaman "Data Lowongan".');
         } else {
-            $joblist = Job::where('employer_id', $getUserId->id)->select('*')->get();
+            $joblist = Job::join('job_category', 'job_category.id', '=', 'jobs.job_category_id')->where('employer_id', $getUserId->id)->select('jobs.*', 'job_category.category')->get();
             $numbtable = 1;
             return view('jobs.index', compact(['joblist', 'numbtable']));
         }
@@ -76,7 +76,8 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view('jobs.edit-job', compact(['job']));
+        $jobcategory = JobCategory::orderBy('category', 'asc')->get();
+        return view('jobs.edit-job', compact(['job', 'jobcategory']));
     }
 
     /**
