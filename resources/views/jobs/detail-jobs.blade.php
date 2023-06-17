@@ -4,7 +4,7 @@
         <div class="relative flex w-full flex-col gap-5 rounded-xl border-2 border-accent1 bg-slate-100 p-8 md:flex-row">
             <div class="w-fit">
                 <img class="h-16 w-16 rounded-lg object-cover shadow-sm"
-                     src="{{ $jobWithEmployer->company_logo ? asset('images/' . $jobWithEmployer->company_logo) : asset('images/defaultCompLogo.png') }}"
+                     src="{{ $jobWithEmployer->company_logo ? asset('images/employers-logo/' . $jobWithEmployer->company_logo) : asset('images/defaultCompLogo.png') }}"
                      alt="{{ $jobWithEmployer->company_name }} Logo" />
             </div>
             <div class="flex flex-1 grow flex-col gap-2">
@@ -25,7 +25,7 @@
                         </path>
                         <path d="M12 3v3m0 12v3"></path>
                     </svg>
-                    IDR {{ number_format($jobWithEmployer->salary, 2, ',', '.') }}
+                    IDR {{ $jobWithEmployer->salary }}
                 </p>
 
                 <p class="flex max-w-[40ch] items-center gap-1 text-base text-gray-800">
@@ -48,7 +48,7 @@
                         <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
                         <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
                     </svg>
-                    Freelance
+                    {{ $jobWithEmployer->tipe_lowongan }}
                 </p>
 
                 <p class="flex max-w-[40ch] items-center gap-1 text-base text-gray-800">
@@ -61,7 +61,7 @@
                         <path d="M12 12l0 .01"></path>
                         <path d="M3 13a20 20 0 0 0 18 0"></path>
                     </svg>
-                    Pengalaman 1 - 3 Tahun
+                    {{ $jobWithEmployer->experience }}
                 </p>
                 <form class="mt-4" action="/save-job" method="POST">
                     @csrf
@@ -69,29 +69,31 @@
                     <input name="job_seeker_id" type="hidden" value="{{ Auth::user()->id }}">
                     @if (auth()->user()->jobseeker === null)
                         <a class="mr-2 mb-2 flex w-fit items-center justify-center rounded-lg border-2 border-accent1 px-5 py-3 text-sm font-medium text-accent1 hover:bg-accent1/30 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                           href="{{ url('/profile-jobseeker') }}">
-                            <svg class="icon icon-tabler icon-tabler-bookmark inline-block"
-                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                            </svg>
-                            Bookmark
-                        </a>
+                        href="{{ url('/profile-jobseeker') }}">
+                        <svg class="icon icon-tabler icon-tabler-bookmark inline-block"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                        </svg>
+                        Bookmark
+                    </a>
                     @else
-                        <button class="mb-2 flex w-fit items-center justify-center rounded-full bg-purple-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                                type="submit">
-                            <svg class="icon icon-tabler icon-tabler-bookmark-filled inline-block"
-                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M15 3a3 3 0 0 1 2.995 2.824l.005 .176v14a1 1 0 0 1 -1.413 .911l-.101 -.054l-4.487 -2.691l-4.485 2.691a1 1 0 0 1 -1.508 -.743l-.006 -.114v-14a3 3 0 0 1 2.824 -2.995l.176 -.005h6z"
-                                      stroke-width="0" fill="currentColor"></path>
-                            </svg>
-                            Bookmark
-                        </button>
+                        @if (auth()->user()->role === 'jobseeker')
+                            <button class="mb-2 flex w-fit items-center justify-center rounded-full bg-purple-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                                    type="submit">
+                                <svg class="icon icon-tabler icon-tabler-bookmark-filled inline-block"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M15 3a3 3 0 0 1 2.995 2.824l.005 .176v14a1 1 0 0 1 -1.413 .911l-.101 -.054l-4.487 -2.691l-4.485 2.691a1 1 0 0 1 -1.508 -.743l-.006 -.114v-14a3 3 0 0 1 2.824 -2.995l.176 -.005h6z"
+                                        stroke-width="0" fill="currentColor"></path>
+                                </svg>
+                                Bookmark
+                            </button>
+                        @endif
                     @endif
                 </form>
                 <hr class="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700">
@@ -109,7 +111,7 @@
                     <h2 class="text-lg font-bold">Tentang Perusahaan</h2>
                     <div class="ml-2 flex items-center gap-4">
                         <img class="h-16 w-16 rounded-lg object-cover shadow-sm"
-                             src="{{ $jobWithEmployer->company_logo ? asset('images/' . $jobWithEmployer->company_logo) : asset('images/defaultCompLogo.png') }}"
+                             src="{{ $jobWithEmployer->company_logo ? asset('images/employers-logo/' . $jobWithEmployer->company_logo) : asset('images/defaultCompLogo.png') }}"
                              alt="{{ $jobWithEmployer->company_name }} Logo" />
                         <div class="text-base font-semibold">
                             <p>

@@ -24,7 +24,7 @@ class JobSeeder extends Seeder
                 'description' => 'Dibutuhkan Senior back end engineer segera',
                 'requirement' => 'bahasa pemrograman php',
                 'experience' => '2 - 3 Tahun',
-                'tipe_lowongan' => 'freelance',
+                'tipe_lowongan' => 'Freelance',
                 'salary' => '2000000 - 4000000',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

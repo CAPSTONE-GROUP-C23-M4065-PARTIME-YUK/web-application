@@ -73,7 +73,7 @@
 
                                 <div class="block sm:block sm:shrink-0">
                                     <img class="h-16 w-16 rounded-lg object-cover shadow-sm"
-                                         src="{{ $job->company_logo ? asset('images/' . $job->company_logo) : asset('images/defaultCompLogo.png') }}"
+                                         src="{{ $job->company_logo ? asset('images/employers-logo/' . $job->company_logo) : asset('images/defaultCompLogo.png') }}"
                                          alt="{{ $job->company_name }} Logo" />
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                         </path>
                                         <path d="M12 3v3m0 12v3"></path>
                                     </svg>
-                                    IDR {{ number_format($job->salary, 2, ',', '.') }}
+                                    IDR {{ $job->salary }}
                                 </p>
                                 <p class="line-clamp-1 flex max-w-[40ch] items-center gap-1 text-sm text-gray-500">
                                     <svg class="icon icon-tabler icon-tabler-briefcase" xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@
                                         <path d="M12 12l0 .01"></path>
                                         <path d="M3 13a20 20 0 0 0 18 0"></path>
                                     </svg>
-                                    2 - 3 Tahun
+                                    {{ $job->experience }}
                                 </p>
                             </div>
 
@@ -131,7 +131,7 @@
 
                                     <div class="flex flex-col gap-1">
                                         <dt class="text-sm font-medium text-gray-600">Tipe</dt>
-                                        <dd class="text-xs text-gray-500">Part Time</dd>
+                                        <dd class="text-xs text-gray-500">{{ $job->tipe_lowongan }}</dd>
                                     </div>
                                 </div>
 

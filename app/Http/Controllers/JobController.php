@@ -107,7 +107,7 @@ class JobController extends Controller
 
     public function allJobs()
     {
-        $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->select('jobs.*', 'employers.*')->get();
+        $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')->select('jobs.*', 'employers.company_name', 'employers.company_logo', 'employers.company_province', 'employers.company_regency', 'job_category.category')->get();
         $numb = 1;
         // dd($data);
         return view('jobs.all-jobs', compact(['data', 'numb']));
@@ -117,8 +117,9 @@ class JobController extends Controller
     {
         $job = Job::find($id);
         $jobWithEmployer = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')
+            ->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')
             ->where('jobs.id', $id)
-            ->select('jobs.*', 'employers.*')
+            ->select('jobs.*', 'employers.*', 'job_category.*')
             ->first();
         // dd($jobWithEmployer);
         return view('jobs.detail-jobs', compact('jobWithEmployer'));
