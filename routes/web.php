@@ -23,6 +23,7 @@ use App\Http\Controllers\UserJobSeekerController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
 
 // Route::get('/register', function () {
 //     return view('auth.register');
@@ -47,7 +48,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/employer', EmployersController::class);
 
     Route::resource('/job', JobController::class);
-    Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
     Route::get('/{id}/detail', [JobController::class, 'detailJob'])->name('job.detail');
     Route::post('/save-job', [ApplicationController::class, 'store'])->name('store.job');
     Route::get('/save-loker', [ApplicationController::class, 'index'])->name('save.loker');
