@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             IndoRegionRegencySeeder::class,
             JobSeekerSeeder::class,
             EmployersSeeder::class,
+            JobCategorySeeder::class,
             JobSeeder::class
         ]);
     }
