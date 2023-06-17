@@ -67,20 +67,20 @@
                     @csrf
                     <input name="job_id" type="hidden" value="{{ $jobWithEmployer->id }}">
                     <input name="job_seeker_id" type="hidden" value="{{ Auth::user()->id }}">
-                    @if (auth()->user()->jobseeker === null)
-                        <a class="mr-2 mb-2 flex w-fit items-center justify-center rounded-lg border-2 border-accent1 px-5 py-3 text-sm font-medium text-accent1 hover:bg-accent1/30 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        href="{{ url('/profile-jobseeker') }}">
-                        <svg class="icon icon-tabler icon-tabler-bookmark inline-block"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                        </svg>
-                        Bookmark
-                    </a>
-                    @else
-                        @if (auth()->user()->role === 'jobseeker')
+                    @if (auth()->user()->role == 'jobseeker')
+                        @if (auth()->user()->jobseeker === null)
+                            <a class="mr-2 mb-2 flex w-fit items-center justify-center rounded-lg border-2 border-accent1 px-5 py-3 text-sm font-medium text-accent1 hover:bg-accent1/30 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            href="{{ url('/profile-jobseeker') }}">
+                            <svg class="icon icon-tabler icon-tabler-bookmark inline-block"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                            </svg>
+                            Bookmark
+                        </a>
+                        @else
                             <button class="mb-2 flex w-fit items-center justify-center rounded-full bg-purple-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                                     type="submit">
                                 <svg class="icon icon-tabler icon-tabler-bookmark-filled inline-block"
