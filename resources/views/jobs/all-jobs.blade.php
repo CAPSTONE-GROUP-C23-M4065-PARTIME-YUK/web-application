@@ -58,22 +58,14 @@
                 @foreach ($data as $job)
                     <div class="relative overflow-hidden rounded-lg transition-all hover:translate-y-1 hover:bg-accent1/20"
                          id="outer-card ">
-                        <a class="absolute top-8 right-4 z-10 text-accent1 transition-all hover:text-accent2"
-                           href="">
-                            <svg class="icon icon-tabler icon-tabler-bookmark" xmlns="http://www.w3.org/2000/svg"
-                                 width="30" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                            </svg>
-                        </a>
                         <a class="relative block overflow-hidden rounded-lg border border-accent1 p-4 transition-all sm:p-6 lg:p-8"
                            href="{{ url($job->id . '/detail') }}">
 
                             <div class="flex flex-row-reverse justify-end gap-4">
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                                        {{ $job->title }} <span class="text-xs font-medium text-gray-600">({{ $job->category }})</span>
+                                        {{ $job->title }} <span
+                                              class="text-xs font-medium text-gray-600">({{ $job->category }})</span>
                                     </h3>
 
                                     <p class="mt-1 text-xs font-medium text-gray-600">{{ $job->company_name }}</p>
@@ -81,7 +73,8 @@
 
                                 <div class="block sm:block sm:shrink-0">
                                     <img class="h-16 w-16 rounded-lg object-cover shadow-sm"
-                                         src="{{ $job->company_logo ? asset('images/'.$job->company_logo) : asset('images/defaultCompLogo.png') }}" alt="{{ $job->company_name}} Logo" />
+                                         src="{{ $job->company_logo ? asset('images/' . $job->company_logo) : asset('images/defaultCompLogo.png') }}"
+                                         alt="{{ $job->company_name }} Logo" />
                                 </div>
                             </div>
 

@@ -118,7 +118,7 @@ class JobController extends Controller
             ->where('jobs.id', $id)
             ->select('jobs.*', 'employers.*')
             ->first();
-
+        // dd($jobWithEmployer);
         return view('jobs.detail-jobs', compact('jobWithEmployer'));
     }
 }
