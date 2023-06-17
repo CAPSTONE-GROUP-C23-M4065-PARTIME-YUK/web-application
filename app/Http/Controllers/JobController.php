@@ -8,7 +8,9 @@ use App\Http\Requests\UpdateJobRequest;
 use App\Models\Application;
 use App\Models\Employers;
 use App\Models\JobCategory;
+use App\Models\Regency;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -106,12 +108,32 @@ class JobController extends Controller
         return Redirect::route('job.index')->with('message', 'Berhasil menghapus lowongan parttime.');
     }
 
-    public function allJobs()
+    public function allJobs(HttpRequest $request)
     {
-        $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')->select('jobs.*', 'employers.company_name', 'employers.company_logo', 'employers.company_province', 'employers.company_regency', 'job_category.category')->get();
-        $numb = 1;
-        // dd($data);
-        return view('jobs.all-jobs', compact(['data', 'numb']));
+        $searchByTitle = $request->input('search-by-title');
+        $searchByLocation = $request->input('search-by-location');
+        $searchByCategory = $request->input('search-by-category');
+
+        $getregency = Regency::all();
+        $getcategory = JobCategory::all();
+
+        if ($searchByTitle) {
+            $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')->select('jobs.*', 'employers.company_name', 'employers.company_logo', 'employers.company_province', 'employers.company_regency', 'job_category.category')
+            ->when($searchByTitle, function ($query, $searchByTitle) {
+                return $query->where('jobs.title', 'like', '%' . $searchByTitle . '%');
+            })
+            ->when($searchByLocation, function ($query, $searchByLocation) {
+                return $query->where('employers.company_regency', 'like', '%' . $searchByLocation . '%');
+            })
+            ->when($searchByCategory, function ($query, $searchByCategory) {
+                return $query->where('job_category.category', 'like', '%' . $searchByCategory . '%');
+            })
+            ->get();
+            return view('jobs.all-jobs', compact(['data', 'getregency', 'getcategory']));
+        } else {
+            $data = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')->select('jobs.*', 'employers.company_name', 'employers.company_logo', 'employers.company_province', 'employers.company_regency', 'job_category.category')->get();
+            return view('jobs.all-jobs', compact(['data', 'getregency', 'getcategory']));
+        }
     }
 
     public function detailJob($id)
