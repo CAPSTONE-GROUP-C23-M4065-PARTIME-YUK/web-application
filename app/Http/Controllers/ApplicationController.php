@@ -22,7 +22,8 @@ class ApplicationController extends Controller
         $data = Application::where('job_seeker_id', Auth::user()->jobSeeker->id)
         ->join('jobs', 'applications.job_id', '=', 'jobs.id')
         ->join('employers', 'jobs.employer_id', '=', 'employers.id')
-        ->select('applications.*', 'jobs.job_category_id', 'jobs.salary','employers.company_name')
+        ->join('job_category', 'jobs.job_category_id', '=', 'job_category.id')
+        ->select('applications.*', 'job_category.category', 'jobs.salary','employers.company_name')
         ->get();
         
         return view('jobseeker.save-loker', compact('data', 'numb', 'jobseeker'));
