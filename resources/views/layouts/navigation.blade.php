@@ -67,7 +67,12 @@
                                         </li>
                                     @elseif (auth()->user()->role == 'jobseeker')
                                         <li>
+                                            @if (auth()->user()->jobseeker === null)
+                                            <a href="{{ url('/profile-jobseeker') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lowongan Disimpan</a>
+                                            @else
                                             <a href="{{ url('/save-loker') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lowongan Disimpan</a>
+                                            @endif
+                                           
                                         </li>
                                         <li>
                                             <a href="{{ url('/resume') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Resume</a>
