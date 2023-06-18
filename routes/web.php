@@ -25,6 +25,7 @@ Route::get('/', function () {
 });
 Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
 
+Route::get('/list-about', [JobController::class, 'about'])->name('list.about');
 // Route::get('/register', function () {
 //     return view('auth.register');
 // })->name('register');
@@ -44,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Route::resource('/jobseeker', JobSeekerController::class);
         // Route::resource('/job', JobController::class)->scoped();
     });
-    
+
     Route::resource('/employer', EmployersController::class);
 
     Route::resource('/job', JobController::class);

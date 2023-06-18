@@ -46,6 +46,11 @@
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
                        href="#">Faq</a>
                 </li>
+
+                <li>
+                    <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
+                       href="{{ url('/list-about') }}">About Us</a>
+                </li>
                 @if (auth()->user())
                     @if (auth()->user()->role == 'administrator')
                         <li>
@@ -72,7 +77,7 @@
                                             @else
                                             <a href="{{ url('/save-loker') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lowongan Disimpan</a>
                                             @endif
-                                           
+
                                         </li>
                                         <li>
                                             <a href="{{ url('/resume') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Resume</a>

@@ -147,4 +147,8 @@ class JobController extends Controller
         // dd($jobWithEmployer);
         return view('jobs.detail-jobs', compact('jobWithEmployer'));
     }
+
+    public function about() {
+        return view('about.index');
+    }
 }
