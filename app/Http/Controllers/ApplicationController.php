@@ -48,17 +48,15 @@ class ApplicationController extends Controller
     public function store(StoreApplicationRequest $request)
     {
         $jobSeekerId = auth()->user()->jobSeeker->id;
-
-        $tersediaApplication = Application::where('job_seeker_id', $jobSeekerId)->first();
-        if($tersediaApplication){
-            $jobId = $tersediaApplication->job_id;
-            return redirect()->route('job.detail', ['id' => $jobId])->with('message', 'Anda sudah menyimpan lowongan pekerjaan ini.');
-        }
-
+    
+        $tersediaApplication = Application::where('job_seeker_id', $jobSeekerId)
+            ->where('job_id', $request->job_id) 
+            ->first();
+    
         $applicationData = $request->all();
         $applicationData['job_seeker_id'] = $jobSeekerId;
         Application::create($applicationData);
-
+    
         return redirect()->route('save.loker')->with('message', 'Berhasil melamar pekerjaan.');
     }
 
