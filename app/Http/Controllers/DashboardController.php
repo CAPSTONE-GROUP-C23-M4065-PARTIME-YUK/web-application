@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function dataPengguna() {
         $numb = 1;
-        $dataPengguna = User::latest()->paginate(2);
+        $dataPengguna = User::latest()->paginate(10);
         return view('admin.user.index', compact([
             'dataPengguna', 'numb'
         ]));
@@ -33,7 +33,7 @@ class DashboardController extends Controller
         $numb = 1;
         $dataEmployers = Employers::join('users', 'employers.user_id', '=', 'users.id')
         ->select('employers.*', 'users.name', 'users.email')
-        ->paginate(2);
+        ->paginate(10);
         return view('admin.employer.index', compact([
             'dataEmployers', 'numb'
         ]));
@@ -52,7 +52,7 @@ class DashboardController extends Controller
         $numb = 1;
         $dataJobSeekers = jobSeeker::join('users', 'job_seekers.user_id', '=', 'users.id')
         ->select('job_seekers.*', 'users.name', 'users.email')
-        ->paginate(2);
+        ->paginate(10);
         return view('admin.jobseeker.index', compact([
             'dataJobSeekers', 'numb'
         ]));
@@ -73,7 +73,7 @@ class DashboardController extends Controller
         $dataJobs = Job::join('employers', 'jobs.employer_id', '=', 'employers.id')
         ->join('job_category', 'jobs.job_category_id', '=', 'job_category.id')
         ->select('jobs.*', 'employers.company_name', 'employers.company_email', 'job_category.category')
-        ->paginate(2);
+        ->paginate(10);
         return view('admin.job.index', compact([
             'dataJobs', 'numb'
         ]));
