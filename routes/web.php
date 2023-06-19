@@ -26,6 +26,9 @@ Route::get('/', function () {
 Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
 
 Route::get('/list-about', [JobController::class, 'about'])->name('list.about');
+Route::get('/list-faq', function(){
+    return view('faq');
+})->name('faq');
 Route::get('/contact', [JobController::class, 'contact'])->name('contact');
 Route::post('/post-contact', [JobController::class, 'createContact'])->name('contact.store');
 // Route::get('/register', function () {

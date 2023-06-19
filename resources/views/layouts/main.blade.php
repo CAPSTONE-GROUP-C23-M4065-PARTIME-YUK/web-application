@@ -29,7 +29,7 @@
         @yield('main')
         @include('layouts.footer')
     </div>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    {{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
     @yield('script')
 </body>
 

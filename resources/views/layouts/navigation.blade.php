@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
-                       href="#">Faq</a>
+                       href="{{ route('faq') }}">Faq</a>
                 </li>
                 <li>
                     <a class="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-accent1"
