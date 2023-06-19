@@ -104,6 +104,8 @@ class UserJobSeekerController extends Controller
             ->where('users.id', '=', Auth::user()->id)
             ->get();
         
+        // dd($data);
+
         return view('jobseeker.profile', ['data' => $data]);
     }
 
