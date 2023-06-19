@@ -41,10 +41,10 @@
                     <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
                         <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
                             scope="row">
-                            Jackson Martinez
+                            {{ $listEmployers->name }}
                         </th>
                         <td class="px-6 py-4">
-                            jacksonm@gmail.com
+                            {{ $listEmployers->email }}
                         </td>
                         <td class="px-6 py-4">
                             PT.Sentosa Jaya
@@ -52,7 +52,7 @@
                         <td class="px-6 py-4 text-right">
                             <div class="inline-flex overflow-hidden rounded-md text-slate-800 shadow-sm">
                                 <a class="rounded-l-lg bg-accent4 px-4 py-2 text-sm font-medium transition-all hover:translate-y-1 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-                                    href="">
+                                    href="{{ url('/detail-employers/' . $listEmployers->id) }}">
                                     Detail
                                 </a>
                             </div>
