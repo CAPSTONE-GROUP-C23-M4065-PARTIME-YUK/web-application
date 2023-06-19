@@ -146,7 +146,7 @@ class JobController extends Controller
         $jobWithEmployer = Job::join('employers', 'employers.id', '=', 'jobs.employer_id')
             ->join('job_category', 'job_category.id', '=', 'jobs.job_category_id')
             ->where('jobs.id', $id)
-            ->select('jobs.*', 'employers.*', 'job_category.category')
+            ->select('jobs.*', 'employers.company_name','employers.company_logo','employers.company_website','employers.company_email','employers.company_phone','employers.company_description','employers.company_regency','employers.company_address', 'job_category.category')
             ->first();
         // dd($jobWithEmployer);
         return view('jobs.detail-jobs', compact('jobWithEmployer'));
