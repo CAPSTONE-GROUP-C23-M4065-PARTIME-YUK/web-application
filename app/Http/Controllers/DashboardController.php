@@ -6,6 +6,7 @@ use App\Models\Employers;
 use App\Models\Job;
 use App\Models\jobSeeker;
 use App\Models\User;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -84,6 +85,13 @@ class DashboardController extends Controller
 
         return view('admin.job.detail', compact([
             'job', 'jobWithEmployer'
+        ]));
+    }
+
+    public function contactUs() {
+        $dataContact = ContactUs::all();
+        return view('admin.contact.index', compact([
+            'dataContact'
         ]));
     }
 }

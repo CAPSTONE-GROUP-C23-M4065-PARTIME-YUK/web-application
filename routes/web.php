@@ -26,6 +26,8 @@ Route::get('/', function () {
 Route::get('/all-jobs', [JobController::class, 'allJobs'])->name('all.jobs');
 
 Route::get('/list-about', [JobController::class, 'about'])->name('list.about');
+Route::get('/contact', [JobController::class, 'contact'])->name('contact');
+Route::post('/post-contact', [JobController::class, 'createContact'])->name('contact.store');
 // Route::get('/register', function () {
 //     return view('auth.register');
 // })->name('register');
@@ -45,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/detail-employers/{id}', [DashboardController::class, 'detailEmployers'])->name('detail.employers');
         Route::get('/detail-jobseekers/{id}', [DashboardController::class, 'detailDataJobSeekers'])->name('detail.jobseekers');
         Route::get('/detail-jobs/{id}', [DashboardController::class, 'detailDataJobs'])->name('detail.jobs');
+        Route::get('/list-contact', [DashboardController::class, 'contactUs'])->name('lists.contact');
 
         // Route::resource('/jobseeker', JobSeekerController::class);
         // Route::resource('/job', JobController::class)->scoped();

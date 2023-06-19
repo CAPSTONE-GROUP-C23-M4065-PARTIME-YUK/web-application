@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             JobSeekerSeeder::class,
             EmployersSeeder::class,
             JobCategorySeeder::class,
-            JobSeeder::class
+            JobSeeder::class,
+            ContactUsSeeder::class
         ]);
     }
 }

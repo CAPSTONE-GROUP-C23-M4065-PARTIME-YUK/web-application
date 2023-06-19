@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactUsRequest;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
@@ -13,6 +14,9 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\AboutUs;
+use App\Models\ContactUs;
+
 
 
 class JobController extends Controller
@@ -150,5 +154,15 @@ class JobController extends Controller
 
     public function about() {
         return view('about.index');
+    }
+
+    public function contact() {
+        return view('contact.index');
+    }
+
+    public function createContact(StoreContactUsRequest $request) {
+        $data = $request->all();
+        ContactUs::create($data);
+        return Redirect::route('contact')->with('message', 'Kami Akan Membalas Pertanyaan Anda Melalui Email.');
     }
 }
