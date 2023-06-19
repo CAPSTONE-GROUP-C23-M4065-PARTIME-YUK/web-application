@@ -22,18 +22,20 @@ class DashboardController extends Controller
     }
 
     public function dataPengguna() {
+        $numb = 1;
         $dataPengguna = User::all();
         return view('admin.user.index', compact([
-            'dataPengguna'
+            'dataPengguna', 'numb'
         ]));
     }
 
     public function dataEmployers() {
+        $numb = 1;
         $dataEmployers = Employers::join('users', 'employers.user_id', '=', 'users.id')
         ->select('employers.*', 'users.name', 'users.email')
         ->get();
         return view('admin.employer.index', compact([
-            'dataEmployers'
+            'dataEmployers', 'numb'
         ]));
     }
 
@@ -47,11 +49,12 @@ class DashboardController extends Controller
     }
 
     public function dataJobSeekers() {
+        $numb = 1;
         $dataJobSeekers = jobSeeker::join('users', 'job_seekers.user_id', '=', 'users.id')
         ->select('job_seekers.*', 'users.name', 'users.email')
         ->get();
         return view('admin.jobseeker.index', compact([
-            'dataJobSeekers'
+            'dataJobSeekers', 'numb'
         ]));
     }
 
@@ -66,12 +69,13 @@ class DashboardController extends Controller
     }
 
     public function dataJobs() {
+        $numb = 1;
         $dataJobs = Job::join('employers', 'jobs.employer_id', '=', 'employers.id')
         ->join('job_category', 'jobs.job_category_id', '=', 'job_category.id')
         ->select('jobs.*', 'employers.company_name', 'employers.company_email', 'job_category.category')
         ->get();
         return view('admin.job.index', compact([
-            'dataJobs'
+            'dataJobs', 'numb'
         ]));
     }
 
