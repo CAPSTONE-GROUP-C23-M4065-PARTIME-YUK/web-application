@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('main')
-<main class="z-20 mx-auto flex w-full flex-1 flex-col gap-y-8 p-4 py-16 sm:w-[1280px]">
+<main class="z-20 mx-auto flex w-full flex-1 flex-col gap-y-8 p-4 py-16 xl:w-[1280px] items-center">
     <h1 class="text-center text-2xl font-bold mb-5">About Us</h1>
     <h3 class="text-center text-1xl font">Meet The Team Behind Partime.yuk</h3>
-    <div class="flex flex-col sm:flex-row ml-5 sm:ml-11">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 items-center">
         <div class="flex flex-wrap p-5 w-full sm:max-w-sm">
             <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-end px-4 pt-4">
