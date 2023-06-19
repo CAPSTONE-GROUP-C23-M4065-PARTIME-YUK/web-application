@@ -20,7 +20,7 @@
                     sebagai mahasiswa yang sibuk. Oleh karena itu, kami menawarkan berbagai peluang pekerjaan yang
                     fleksibel dan relevan dengan minat serta bidang studi Anda.</p>
                 <a class="group relative inline-block w-fit text-sm font-medium text-white focus:outline-none focus:ring active:text-indigo-500"
-                   href="/download">
+                   href="{{ route('all.jobs') }}">
                     <span
                           class="absolute inset-0 translate-x-1 translate-y-1 bg-accent2 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
@@ -93,7 +93,7 @@
                 dapat membantu Anda mencapai kesuksesan di dunia kerja.
             </p>
             <a class="flex w-fit items-center justify-center gap-2 rounded-xl border-4 border-black bg-pink-100 px-8 py-4 text-xl font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring active:bg-pink-50"
-               href="/blog">
+               href="{{ url('register') }}">
                 Daftar Sekarang
             </a>
         </div>
