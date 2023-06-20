@@ -8,7 +8,7 @@ PartTime.yuk is a web application that allows users to see job available and can
 - [Contributing](#contributing)
 
 ## Usage
-Access the website at [https://roketminimoto.online/parttime-yuk/public/](https://roketminimoto.online/parttime-yuk/public/)
+Access the website at [https://roketminimoto.online/parttime-yuk/public/](https://roketminimoto.online/parttime-yuk/public/)  
 You can Login as 3 type of user:
 - Administrator  
 - Jobseeker  
